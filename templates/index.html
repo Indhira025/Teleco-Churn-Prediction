@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teleco Churn Predictor | Customer Retention Intelligence</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Main Container */
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #e0d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+        }
+
+        /* Dashboard Layout */
+        .dashboard {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        /* Sidebar - SIM Selection */
+        .sidebar {
+            width: 280px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar h3 i {
+            color: #667eea;
+        }
+
+        .sim-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .sim-card:hover {
+            transform: translateX(5px);
+            background: #f1f5f9;
+        }
+
+        .sim-card.active {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #f0e6ff, #f8f4ff);
+        }
+
+        .sim-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .sim-info h4 {
+            font-size: 1rem;
+            color: #1e293b;
+        }
+
+        .sim-info p {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        /* Main Form */
+        .main-form {
+            flex: 1;
+            background: rgba(255,255,255,0.95);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Result Banner */
+        .result-banner {
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-banner.success {
+            background: linear-gradient(135deg, #10b98120, #05966920);
+            border-left: 4px solid #10b981;
+            color: #065f46;
+        }
+
+        .result-banner.danger {
+            background: linear-gradient(135deg, #ef444420, #dc262620);
+            border-left: 4px solid #dc2626;
+            color: #991b1b;
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Form Group */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group label i {
+            color: #667eea;
+            width: 18px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i.input-icon {
+            position: absolute;
+            left: 12px;
+            color: #94a3b8;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 12px 12px 38px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+
+        /* Form Section */
+        .form-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px dashed #e2e8f0;
+        }
+
+        .form-section h4 {
+            font-size: 1rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-section h4 i {
+            color: #667eea;
+        }
+
+        /* Button */
+        .predict-btn {
+            width: 100%;
+            margin-top: 30px;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 14px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .predict-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102,126,234,0.4);
+        }
+
+        .predict-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Loading State */
+        .predict-btn.loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .predict-btn.loading i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .main-form {
+                padding: 20px;
+            }
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+
+        .tooltip:hover::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        /* Stats Cards */
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            flex: 1;
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-card .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-card .stat-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <h1><i class="fas fa-chart-line"></i> Teleco Churn Predictor</h1>
+            <p>AI-Powered Customer Retention Intelligence | Predict customer churn with 78% accuracy</p>
+        </div>
+
+        <div class="dashboard">
+            <!-- Sidebar - SIM Selection -->
+            <div class="sidebar">
+                <h3><i class="fas fa-sim-card"></i> Select Provider</h3>
+
+                <div class="sim-card active" data-sim="Airtel" onclick="selectSIM('Airtel')">
+                    <div class="sim-icon"><i class="fas fa-tower-cell"></i></div>
+                    <div class="sim-info">
+                        <h4>Airtel</h4>
+                        <p>India's leading telecom provider</p>
+                    </div>
+                </div>
+
+                <div class="sim-card" data-sim="Jio" onclick="selectSIM('Jio')">
+                    <div class="sim-icon"><i class="fas fa-wifi"></i></div>
+                    <div class="sim-info">
+                        <h4>Reliance Jio</h4>
+                        <p>4G/5G digital network</p>
+                    </div>
+                </div>
+
+                <div class="sim-card" data-sim="Vi" onclick="selectSIM('Vi')">
+                    <div class="sim-icon"><i class="fas fa-signal"></i></div>
+                    <div class="sim-info">
+                        <h4>Vi (Vodafone Idea)</h4>
+                        <p>Connected India</p>
+                    </div>
+                </div>
+
+                <div class="sim-card" data-sim="BSNL" onclick="selectSIM('BSNL')">
+                    <div class="sim-icon"><i class="fas fa-globe"></i></div>
+                    <div class="sim-info">
+                        <h4>BSNL</h4>
+                        <p>Government telecom service</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Form -->
+            <div class="main-form">
+                {% if prediction_text %}
+                <div class="result-banner {{ prediction_class }}">
+                    <i class="fas {{ 'fa-exclamation-triangle' if 'CHURN' in prediction_text else 'fa-check-circle' }}"></i>
+                    {{ prediction_text }}
+                </div>
+                {% endif %}
+
+                <form method="POST" action="/predict" id="predictionForm">
+                    <input type="hidden" name="Teleco_Partner" id="Teleco_Partner" value="Airtel">
+
+                    <!-- Account Information Section -->
+                    <div class="form-section">
+                        <h4><i class="fas fa-user-circle"></i> Account Information</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label><i class="fas fa-clock"></i> Tenure (months)</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-calendar-alt input-icon"></i>
+                                    <input type="number" name="tenure_yeo_trim" id="tenure" step="0.01" placeholder="e.g., 24.5" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-dollar-sign"></i> Monthly Charges</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-money-bill-wave input-icon"></i>
+                                    <input type="number" name="MonthlyCharges_quantile_trim" id="monthlyCharges" step="0.01" placeholder="e.g., 89.50" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-chart-line"></i> Total Charges</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-coins input-icon"></i>
+                                    <input type="number" name="TotalCharges_interpolate_quantile_trim" id="totalCharges" step="0.01" placeholder="e.g., 2148.00" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-user-shield"></i> Senior Citizen</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-id-card input-icon"></i>
+                                    <select name="SeniorCitizen" id="seniorCitizen">
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Demographic Information -->
+                    <div class="form-section">
+                        <h4><i class="fas fa-users"></i> Customer Profile</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label><i class="fas fa-heart"></i> Has Partner?</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-hand-holding-heart input-icon"></i>
+                                    <select name="Partner_Yes" id="partner">
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-baby-carriage"></i> Has Dependents?</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-users input-icon"></i>
+                                    <select name="Dependents_Yes" id="dependents">
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service Information -->
+                    <div class="form-section">
+                        <h4><i class="fas fa-server"></i> Service Details</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label><i class="fas fa-file-invoice"></i> Paperless Billing?</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-envelope input-icon"></i>
+                                    <select name="PaperlessBilling_Yes" id="paperless">
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-phone-alt"></i> Multiple Lines?</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-layer-group input-icon"></i>
+                                    <select name="MultipleLines_Yes" id="multipleLines">
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-globe"></i> Internet Service</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-wifi input-icon"></i>
+                                    <select name="InternetService" id="internetService">
+                                        <option value="DSL">DSL</option>
+                                        <option value="Fiber optic">Fiber Optic</option>
+                                        <option value="No">No Internet</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add-on Services -->
+                    <div class="form-section">
+                        <h4><i class="fas fa-plug"></i> Add-on Services</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label><i class="fas fa-lock"></i> Online Security</label>
+                                <select name="OnlineSecurity" id="onlineSecurity">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No phone service">No Phone Service</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-cloud-upload-alt"></i> Online Backup</label>
+                                <select name="OnlineBackup" id="onlineBackup">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No phone service">No Phone Service</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-shield-alt"></i> Device Protection</label>
+                                <select name="DeviceProtection" id="deviceProtection">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No phone service">No Phone Service</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-headset"></i> Tech Support</label>
+                                <select name="TechSupport" id="techSupport">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No phone service">No Phone Service</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-tv"></i> Streaming TV</label>
+                                <select name="StreamingTV" id="streamingTV">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No phone service">No Phone Service</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-film"></i> Streaming Movies</label>
+                                <select name="StreamingMovies" id="streamingMovies">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No phone service">No Phone Service</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Billing & Contract -->
+                    <div class="form-section">
+                        <h4><i class="fas fa-file-contract"></i> Billing & Contract</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label><i class="fas fa-credit-card"></i> Payment Method</label>
+                                <select name="PaymentMethod" id="paymentMethod">
+                                    <option value="Electronic check">Electronic Check</option>
+                                    <option value="Mailed check">Mailed Check</option>
+                                    <option value="Credit card (automatic)">Credit Card (Auto)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-file-signature"></i> Contract Type</label>
+                                <select name="Contract" id="contract">
+                                    <option value="Month-to-month">Month-to-month</option>
+                                    <option value="One year">One Year</option>
+                                    <option value="Two year">Two Year</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="predict-btn" id="predictBtn">
+                        <i class="fas fa-brain"></i>
+                        <span>Predict Churn Risk</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // SIM Selection Function
+        function selectSIM(sim) {
+            document.getElementById('Teleco_Partner').value = sim;
+
+            // Update active class on SIM cards
+            document.querySelectorAll('.sim-card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            // Find and activate the clicked card
+            const cards = document.querySelectorAll('.sim-card');
+            const simMap = {
+                'Airtel': 0,
+                'Jio': 1,
+                'Vi': 2,
+                'BSNL': 3
+            };
+
+            if (cards[simMap[sim]]) {
+                cards[simMap[sim]].classList.add('active');
+            }
+        }
+
+        // Form submission handling with loading state
+        document.getElementById('predictionForm').addEventListener('submit', function(e) {
+            const btn = document.getElementById('predictBtn');
+            const originalHtml = btn.innerHTML;
+
+            btn.innerHTML = '<i class="fas fa-spinner"></i> Analyzing Customer Data...';
+            btn.classList.add('loading');
+
+            // Re-enable button after 30 seconds (fallback)
+            setTimeout(() => {
+                btn.innerHTML = originalHtml;
+                btn.classList.remove('loading');
+            }, 30000);
+        });
+
+        // Input validation
+        const inputs = document.querySelectorAll('input[type="number"]');
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.value < 0) this.value = 0;
+                if (this.value > 10000) this.value = 10000;
+            });
+        });
+
+        // Tooltips for better UX
+        const labels = document.querySelectorAll('.form-group label');
+        labels.forEach(label => {
+            label.classList.add('tooltip');
+            const text = label.innerText;
+            if (text.includes('Tenure')) label.setAttribute('data-tip', 'Number of months the customer has been with the company');
+            if (text.includes('Monthly')) label.setAttribute('data-tip', 'Monthly charges in USD');
+            if (text.includes('Total')) label.setAttribute('data-tip', 'Total charges accumulated');
+            if (text.includes('Contract')) label.setAttribute('data-tip', 'Longer contracts typically reduce churn risk');
+        });
+
+        // Autofill demo data (optional - for testing)
+        function fillDemoData() {
+            document.getElementById('tenure').value = 24.5;
+            document.getElementById('monthlyCharges').value = 89.50;
+            document.getElementById('totalCharges').value = 2148.00;
+            document.getElementById('seniorCitizen').value = '0';
+            document.getElementById('partner').value = 'Yes';
+            document.getElementById('dependents').value = 'No';
+            document.getElementById('paperless').value = 'Yes';
+            document.getElementById('multipleLines').value = 'Yes';
+            document.getElementById('internetService').value = 'Fiber optic';
+            document.getElementById('contract').value = 'Month-to-month';
+        }
+
+        // Uncomment below to enable demo data autofill
+        // window.addEventListener('load', fillDemoData);
+    </script>
+</body>
+</html>

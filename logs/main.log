@@ -1,0 +1,401 @@
+2026-05-24 10:00:27,165 - INFO - Before removing unwanted cols Total dataset_size: (7043, 22)
+2026-05-24 10:00:27,170 - INFO - After removing Total dataset_size: (7043, 21)
+2026-05-24 10:00:27,170 - INFO - ================= spliting data =========================
+2026-05-24 10:00:27,184 - INFO - Train data_size : (5634, 5634)  : total train data : (5634, 20)
+2026-05-24 10:00:27,184 - INFO - Test data_size : (1409, 1409)  : total test data : (1409, 20)
+2026-05-24 10:00:27,184 - INFO - ============== checking for null values =====================
+2026-05-24 10:00:27,195 - INFO - Null Values: 
+ : gender               0
+SeniorCitizen        0
+Partner              0
+Dependents           0
+tenure               0
+PhoneService         0
+MultipleLines        0
+InternetService      0
+OnlineSecurity       0
+OnlineBackup         0
+DeviceProtection     0
+TechSupport          0
+StreamingTV          0
+StreamingMovies      0
+Contract             0
+PaperlessBilling     0
+PaymentMethod        0
+MonthlyCharges       0
+TotalCharges        11
+Teleco_Partner       0
+Churn                0
+dtype: int64
+2026-05-24 10:00:27,202 - INFO - TotalCharges : float64
+2026-05-24 10:00:27,203 - INFO - ================== Handling Missing Values ======================
+2026-05-24 10:00:27,210 - INFO - Before handling null values x_train column names and shape : (5634, 20) : 
+ : Index(['gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure',
+       'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity',
+       'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV',
+       'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod',
+       'MonthlyCharges', 'TotalCharges', 'Teleco_Partner'],
+      dtype='str') : gender               0
+SeniorCitizen        0
+Partner              0
+Dependents           0
+tenure               0
+PhoneService         0
+MultipleLines        0
+InternetService      0
+OnlineSecurity       0
+OnlineBackup         0
+DeviceProtection     0
+TechSupport          0
+StreamingTV          0
+StreamingMovies      0
+Contract             0
+PaperlessBilling     0
+PaymentMethod        0
+MonthlyCharges       0
+TotalCharges        11
+Teleco_Partner       0
+dtype: int64
+2026-05-24 10:00:27,213 - INFO - Before handling null values x_test column names and shape : (1409, 20) : 
+ : Index(['gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure',
+       'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity',
+       'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV',
+       'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod',
+       'MonthlyCharges', 'TotalCharges', 'Teleco_Partner'],
+      dtype='str'): gender              0
+SeniorCitizen       0
+Partner             0
+Dependents          0
+tenure              0
+PhoneService        0
+MultipleLines       0
+InternetService     0
+OnlineSecurity      0
+OnlineBackup        0
+DeviceProtection    0
+TechSupport         0
+StreamingTV         0
+StreamingMovies     0
+Contract            0
+PaperlessBilling    0
+PaymentMethod       0
+MonthlyCharges      0
+TotalCharges        0
+Teleco_Partner      0
+dtype: int64
+2026-05-24 10:00:27,271 - INFO - After handling null values x_train column names and shape : (5634, 20) : 
+ : Index(['gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure',
+       'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity',
+       'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV',
+       'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod',
+       'MonthlyCharges', 'Teleco_Partner', 'TotalCharges_interpolate'],
+      dtype='str') : gender                      0
+SeniorCitizen               0
+Partner                     0
+Dependents                  0
+tenure                      0
+PhoneService                0
+MultipleLines               0
+InternetService             0
+OnlineSecurity              0
+OnlineBackup                0
+DeviceProtection            0
+TechSupport                 0
+StreamingTV                 0
+StreamingMovies             0
+Contract                    0
+PaperlessBilling            0
+PaymentMethod               0
+MonthlyCharges              0
+Teleco_Partner              0
+TotalCharges_interpolate    0
+dtype: int64
+2026-05-24 10:00:27,274 - INFO - After handling null values x_test column names and shape : (1409, 20) : 
+ : Index(['gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure',
+       'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity',
+       'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV',
+       'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod',
+       'MonthlyCharges', 'Teleco_Partner', 'TotalCharges_interpolate'],
+      dtype='str'): gender                      0
+SeniorCitizen               0
+Partner                     0
+Dependents                  0
+tenure                      0
+PhoneService                0
+MultipleLines               0
+InternetService             0
+OnlineSecurity              0
+OnlineBackup                0
+DeviceProtection            0
+TechSupport                 0
+StreamingTV                 0
+StreamingMovies             0
+Contract                    0
+PaperlessBilling            0
+PaymentMethod               0
+MonthlyCharges              0
+Teleco_Partner              0
+TotalCharges_interpolate    0
+dtype: int64
+2026-05-24 10:00:27,274 - INFO - ============= Data Separation ========================
+2026-05-24 10:00:27,276 - INFO - Index(['SeniorCitizen', 'tenure', 'MonthlyCharges',
+       'TotalCharges_interpolate'],
+      dtype='str') : (5634, 4)
+2026-05-24 10:00:27,277 - INFO - Index(['SeniorCitizen', 'tenure', 'MonthlyCharges',
+       'TotalCharges_interpolate'],
+      dtype='str') : (1409, 4)
+2026-05-24 10:00:27,277 - INFO - Index(['gender', 'Partner', 'Dependents', 'PhoneService', 'MultipleLines',
+       'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection',
+       'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract',
+       'PaperlessBilling', 'PaymentMethod', 'Teleco_Partner'],
+      dtype='str') : (5634, 16)
+2026-05-24 10:00:27,277 - INFO - Index(['gender', 'Partner', 'Dependents', 'PhoneService', 'MultipleLines',
+       'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection',
+       'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract',
+       'PaperlessBilling', 'PaymentMethod', 'Teleco_Partner'],
+      dtype='str') : (1409, 16)
+2026-05-24 10:00:27,277 - INFO - =============== Variable Transformation ============================
+2026-05-24 10:00:27,277 - INFO - Before Train Column Name : Index(['SeniorCitizen', 'tenure', 'MonthlyCharges',
+       'TotalCharges_interpolate'],
+      dtype='str')
+2026-05-24 10:00:27,277 - INFO - Before Test Column Name : Index(['SeniorCitizen', 'tenure', 'MonthlyCharges',
+       'TotalCharges_interpolate'],
+      dtype='str')
+2026-05-24 10:00:37,136 - INFO - After Train Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile'],
+      dtype='str')
+2026-05-24 10:00:37,136 - INFO - After Test Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile'],
+      dtype='str')
+2026-05-24 10:00:37,137 - INFO - =============== handling outlier ============================
+2026-05-24 10:00:37,137 - INFO - Before Train Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile'],
+      dtype='str')
+2026-05-24 10:00:37,137 - INFO - Before Test Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile'],
+      dtype='str')
+2026-05-24 10:00:43,623 - INFO - After Train Column Name : Index(['tenure_yeo_trim', 'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim', 'SeniorCitizen'],
+      dtype='str')
+2026-05-24 10:00:43,623 - INFO - After Test Column Name : Index(['tenure_yeo_trim', 'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim', 'SeniorCitizen'],
+      dtype='str')
+2026-05-24 10:00:43,623 - INFO - ================== cat to num ================================
+2026-05-24 10:00:43,623 - INFO - Before x_train_cat shape : (5634, 16) : 
+ : Index(['gender', 'Partner', 'Dependents', 'PhoneService', 'MultipleLines',
+       'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection',
+       'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract',
+       'PaperlessBilling', 'PaymentMethod', 'Teleco_Partner'],
+      dtype='str')
+2026-05-24 10:00:43,624 - INFO - Before x_test_cat shape : (1409, 16) : 
+ : Index(['gender', 'Partner', 'Dependents', 'PhoneService', 'MultipleLines',
+       'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection',
+       'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract',
+       'PaperlessBilling', 'PaymentMethod', 'Teleco_Partner'],
+      dtype='str')
+2026-05-24 10:00:43,746 - INFO - After x_train_cat shape : (5634, 28) : 
+ : Index(['gender_Male', 'Partner_Yes', 'Dependents_Yes', 'PhoneService_Yes',
+       'PaperlessBilling_Yes', 'MultipleLines_No phone service',
+       'MultipleLines_Yes', 'InternetService_Fiber optic',
+       'InternetService_No', 'OnlineSecurity_No internet service',
+       'OnlineSecurity_Yes', 'OnlineBackup_No internet service',
+       'OnlineBackup_Yes', 'DeviceProtection_No internet service',
+       'DeviceProtection_Yes', 'TechSupport_No internet service',
+       'TechSupport_Yes', 'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
+       'Teleco_Partner_BSNL', 'Teleco_Partner_Reliance Jio',
+       'Teleco_Partner_Vodafone', 'Contract_Encoded'],
+      dtype='str')
+2026-05-24 10:00:43,746 - INFO - After x_test_cat shape : (1409, 28) : 
+ : Index(['gender_Male', 'Partner_Yes', 'Dependents_Yes', 'PhoneService_Yes',
+       'PaperlessBilling_Yes', 'MultipleLines_No phone service',
+       'MultipleLines_Yes', 'InternetService_Fiber optic',
+       'InternetService_No', 'OnlineSecurity_No internet service',
+       'OnlineSecurity_Yes', 'OnlineBackup_No internet service',
+       'OnlineBackup_Yes', 'DeviceProtection_No internet service',
+       'DeviceProtection_Yes', 'TechSupport_No internet service',
+       'TechSupport_Yes', 'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
+       'Teleco_Partner_BSNL', 'Teleco_Partner_Reliance Jio',
+       'Teleco_Partner_Vodafone', 'Contract_Encoded'],
+      dtype='str')
+2026-05-24 10:00:43,746 - INFO - ======================== combine cat and num cols =============================
+2026-05-24 10:00:43,747 - INFO - Final Training data : (5634, 32)
+2026-05-24 10:00:43,751 - INFO - tenure_yeo_trim                           0
+MonthlyCharges_quantile_trim              0
+TotalCharges_interpolate_quantile_trim    0
+SeniorCitizen                             0
+gender_Male                               0
+Partner_Yes                               0
+Dependents_Yes                            0
+PhoneService_Yes                          0
+PaperlessBilling_Yes                      0
+MultipleLines_No phone service            0
+MultipleLines_Yes                         0
+InternetService_Fiber optic               0
+InternetService_No                        0
+OnlineSecurity_No internet service        0
+OnlineSecurity_Yes                        0
+OnlineBackup_No internet service          0
+OnlineBackup_Yes                          0
+DeviceProtection_No internet service      0
+DeviceProtection_Yes                      0
+TechSupport_No internet service           0
+TechSupport_Yes                           0
+StreamingTV_No internet service           0
+StreamingTV_Yes                           0
+StreamingMovies_No internet service       0
+StreamingMovies_Yes                       0
+PaymentMethod_Credit card (automatic)     0
+PaymentMethod_Electronic check            0
+PaymentMethod_Mailed check                0
+Teleco_Partner_BSNL                       0
+Teleco_Partner_Reliance Jio               0
+Teleco_Partner_Vodafone                   0
+Contract_Encoded                          0
+dtype: int64
+2026-05-24 10:00:43,751 - INFO - Final Testing data : (1409, 32)
+2026-05-24 10:00:43,753 - INFO - tenure_yeo_trim                           0
+MonthlyCharges_quantile_trim              0
+TotalCharges_interpolate_quantile_trim    0
+SeniorCitizen                             0
+gender_Male                               0
+Partner_Yes                               0
+Dependents_Yes                            0
+PhoneService_Yes                          0
+PaperlessBilling_Yes                      0
+MultipleLines_No phone service            0
+MultipleLines_Yes                         0
+InternetService_Fiber optic               0
+InternetService_No                        0
+OnlineSecurity_No internet service        0
+OnlineSecurity_Yes                        0
+OnlineBackup_No internet service          0
+OnlineBackup_Yes                          0
+DeviceProtection_No internet service      0
+DeviceProtection_Yes                      0
+TechSupport_No internet service           0
+TechSupport_Yes                           0
+StreamingTV_No internet service           0
+StreamingTV_Yes                           0
+StreamingMovies_No internet service       0
+StreamingMovies_Yes                       0
+PaymentMethod_Credit card (automatic)     0
+PaymentMethod_Electronic check            0
+PaymentMethod_Mailed check                0
+Teleco_Partner_BSNL                       0
+Teleco_Partner_Reliance Jio               0
+Teleco_Partner_Vodafone                   0
+Contract_Encoded                          0
+dtype: int64
+2026-05-24 10:00:43,753 - INFO - ============== Feature Selection ===============================
+2026-05-24 10:00:43,754 - INFO - Before filter methods training data : (5634, 32) : 
+ : Index(['tenure_yeo_trim', 'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim', 'SeniorCitizen',
+       'gender_Male', 'Partner_Yes', 'Dependents_Yes', 'PhoneService_Yes',
+       'PaperlessBilling_Yes', 'MultipleLines_No phone service',
+       'MultipleLines_Yes', 'InternetService_Fiber optic',
+       'InternetService_No', 'OnlineSecurity_No internet service',
+       'OnlineSecurity_Yes', 'OnlineBackup_No internet service',
+       'OnlineBackup_Yes', 'DeviceProtection_No internet service',
+       'DeviceProtection_Yes', 'TechSupport_No internet service',
+       'TechSupport_Yes', 'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
+       'Teleco_Partner_BSNL', 'Teleco_Partner_Reliance Jio',
+       'Teleco_Partner_Vodafone', 'Contract_Encoded'],
+      dtype='str')
+2026-05-24 10:00:43,754 - INFO - Before filter methods Te4sting data: (1409, 32) : 
+ : Index(['tenure_yeo_trim', 'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim', 'SeniorCitizen',
+       'gender_Male', 'Partner_Yes', 'Dependents_Yes', 'PhoneService_Yes',
+       'PaperlessBilling_Yes', 'MultipleLines_No phone service',
+       'MultipleLines_Yes', 'InternetService_Fiber optic',
+       'InternetService_No', 'OnlineSecurity_No internet service',
+       'OnlineSecurity_Yes', 'OnlineBackup_No internet service',
+       'OnlineBackup_Yes', 'DeviceProtection_No internet service',
+       'DeviceProtection_Yes', 'TechSupport_No internet service',
+       'TechSupport_Yes', 'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
+       'Teleco_Partner_BSNL', 'Teleco_Partner_Reliance Jio',
+       'Teleco_Partner_Vodafone', 'Contract_Encoded'],
+      dtype='str')
+2026-05-24 10:00:43,808 - INFO - after filter methods training data : (5634, 29) : 
+ : Index(['tenure_yeo_trim', 'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim', 'SeniorCitizen',
+       'Partner_Yes', 'Dependents_Yes', 'PaperlessBilling_Yes',
+       'MultipleLines_Yes', 'InternetService_Fiber optic',
+       'InternetService_No', 'OnlineSecurity_No internet service',
+       'OnlineSecurity_Yes', 'OnlineBackup_No internet service',
+       'OnlineBackup_Yes', 'DeviceProtection_No internet service',
+       'DeviceProtection_Yes', 'TechSupport_No internet service',
+       'TechSupport_Yes', 'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
+       'Teleco_Partner_BSNL', 'Teleco_Partner_Reliance Jio',
+       'Teleco_Partner_Vodafone', 'Contract_Encoded'],
+      dtype='str')
+2026-05-24 10:00:43,809 - INFO - after filter methods testing data: (1409, 29) : 
+ : Index(['tenure_yeo_trim', 'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim', 'SeniorCitizen',
+       'Partner_Yes', 'Dependents_Yes', 'PaperlessBilling_Yes',
+       'MultipleLines_Yes', 'InternetService_Fiber optic',
+       'InternetService_No', 'OnlineSecurity_No internet service',
+       'OnlineSecurity_Yes', 'OnlineBackup_No internet service',
+       'OnlineBackup_Yes', 'DeviceProtection_No internet service',
+       'DeviceProtection_Yes', 'TechSupport_No internet service',
+       'TechSupport_Yes', 'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
+       'Teleco_Partner_BSNL', 'Teleco_Partner_Reliance Jio',
+       'Teleco_Partner_Vodafone', 'Contract_Encoded'],
+      dtype='str') 
+2026-05-24 10:00:43,809 - INFO - ================== Balance data =================
+2026-05-24 10:00:43,813 - INFO - Good (1): 1516
+2026-05-24 10:00:43,814 - INFO - Bad (0): 4118
+2026-05-24 10:00:45,876 - INFO - Total row for Good category in training data 8236 was : 4118
+2026-05-24 10:00:45,878 - INFO - Total row for Bad category in training data 8236 was : 4118
+2026-05-24 10:00:45,878 - INFO - ===================== Feature Scaling =========================
+2026-05-24 10:00:45,878 - INFO - Before training data columns : (8236, 29) 
+2026-05-24 10:00:45,878 - INFO - Before testing data columns : (1409, 29) 
+2026-05-24 10:00:57,468 - INFO - after training data columns :  (8236, 29) : 
+ : Index(['tenure_yeo_trim', 'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim', 'SeniorCitizen',
+       'Partner_Yes', 'Dependents_Yes', 'PaperlessBilling_Yes',
+       'MultipleLines_Yes', 'InternetService_Fiber optic',
+       'InternetService_No', 'OnlineSecurity_No internet service',
+       'OnlineSecurity_Yes', 'OnlineBackup_No internet service',
+       'OnlineBackup_Yes', 'DeviceProtection_No internet service',
+       'DeviceProtection_Yes', 'TechSupport_No internet service',
+       'TechSupport_Yes', 'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
+       'Teleco_Partner_BSNL', 'Teleco_Partner_Reliance Jio',
+       'Teleco_Partner_Vodafone', 'Contract_Encoded'],
+      dtype='str')
+2026-05-24 10:00:57,468 - INFO - after testing data columns : (1409, 29) : 
+ : Index(['tenure_yeo_trim', 'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim', 'SeniorCitizen',
+       'Partner_Yes', 'Dependents_Yes', 'PaperlessBilling_Yes',
+       'MultipleLines_Yes', 'InternetService_Fiber optic',
+       'InternetService_No', 'OnlineSecurity_No internet service',
+       'OnlineSecurity_Yes', 'OnlineBackup_No internet service',
+       'OnlineBackup_Yes', 'DeviceProtection_No internet service',
+       'DeviceProtection_Yes', 'TechSupport_No internet service',
+       'TechSupport_Yes', 'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
+       'Teleco_Partner_BSNL', 'Teleco_Partner_Reliance Jio',
+       'Teleco_Partner_Vodafone', 'Contract_Encoded'],
+      dtype='str')

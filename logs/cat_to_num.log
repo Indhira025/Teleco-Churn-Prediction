@@ -1,0 +1,47 @@
+2026-05-24 10:00:43,624 - INFO - Before x_train_cat shape : (5634, 16) : 
+ : Index(['gender', 'Partner', 'Dependents', 'PhoneService', 'MultipleLines',
+       'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection',
+       'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract',
+       'PaperlessBilling', 'PaymentMethod', 'Teleco_Partner'],
+      dtype='str')
+2026-05-24 10:00:43,625 - INFO - Before x_test_cat shape : (1409, 16) : 
+ : Index(['gender', 'Partner', 'Dependents', 'PhoneService', 'MultipleLines',
+       'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection',
+       'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract',
+       'PaperlessBilling', 'PaymentMethod', 'Teleco_Partner'],
+      dtype='str')
+2026-05-24 10:00:43,644 - INFO - Binary columns : ['gender', 'Partner', 'Dependents', 'PhoneService', 'PaperlessBilling']
+2026-05-24 10:00:43,645 - INFO - Multi category columns : ['MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'PaymentMethod', 'Teleco_Partner']
+2026-05-24 10:00:43,736 - INFO - After encoding train shape : (5634, 27)
+2026-05-24 10:00:43,737 - INFO - After encoding test shape : (1409, 27)
+2026-05-24 10:00:43,741 - INFO - Ordinal categories : [array(['Month-to-month', 'One year', 'Two year'], dtype=object)]
+2026-05-24 10:00:43,744 - INFO - Final Train Shape : (5634, 28) : 
+ : Index(['gender_Male', 'Partner_Yes', 'Dependents_Yes', 'PhoneService_Yes',
+       'PaperlessBilling_Yes', 'MultipleLines_No phone service',
+       'MultipleLines_Yes', 'InternetService_Fiber optic',
+       'InternetService_No', 'OnlineSecurity_No internet service',
+       'OnlineSecurity_Yes', 'OnlineBackup_No internet service',
+       'OnlineBackup_Yes', 'DeviceProtection_No internet service',
+       'DeviceProtection_Yes', 'TechSupport_No internet service',
+       'TechSupport_Yes', 'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
+       'Teleco_Partner_BSNL', 'Teleco_Partner_Reliance Jio',
+       'Teleco_Partner_Vodafone', 'Contract_Encoded'],
+      dtype='str')
+2026-05-24 10:00:43,745 - INFO - Final Test Shape : (1409, 28) : 
+ : Index(['gender_Male', 'Partner_Yes', 'Dependents_Yes', 'PhoneService_Yes',
+       'PaperlessBilling_Yes', 'MultipleLines_No phone service',
+       'MultipleLines_Yes', 'InternetService_Fiber optic',
+       'InternetService_No', 'OnlineSecurity_No internet service',
+       'OnlineSecurity_Yes', 'OnlineBackup_No internet service',
+       'OnlineBackup_Yes', 'DeviceProtection_No internet service',
+       'DeviceProtection_Yes', 'TechSupport_No internet service',
+       'TechSupport_Yes', 'StreamingTV_No internet service', 'StreamingTV_Yes',
+       'StreamingMovies_No internet service', 'StreamingMovies_Yes',
+       'PaymentMethod_Credit card (automatic)',
+       'PaymentMethod_Electronic check', 'PaymentMethod_Mailed check',
+       'Teleco_Partner_BSNL', 'Teleco_Partner_Reliance Jio',
+       'Teleco_Partner_Vodafone', 'Contract_Encoded'],
+      dtype='str')

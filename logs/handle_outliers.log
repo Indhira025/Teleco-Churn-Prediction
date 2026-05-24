@@ -1,0 +1,40 @@
+2026-04-07 23:18:47,409 - INFO - Before Train Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile'],
+      dtype='str')
+2026-04-07 23:18:47,409 - INFO - Before Test Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile'],
+      dtype='str')
+2026-04-07 23:18:56,933 - INFO - After Train Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile', 'tenure_yeo_trim',
+       'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim'],
+      dtype='str')
+2026-04-07 23:18:56,935 - INFO - After Test Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile', 'tenure_yeo_trim',
+       'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim'],
+      dtype='str')
+2026-04-07 23:18:56,944 - INFO - Before Train Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile', 'tenure_yeo_trim',
+       'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim'],
+      dtype='str')
+2026-04-07 23:18:56,944 - INFO - Before Test Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile', 'tenure_yeo_trim',
+       'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim'],
+      dtype='str')
+2026-04-07 23:19:08,810 - INFO - After Train Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile', 'tenure_yeo_trim',
+       'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim', 'tenure_yeo_trim_trim',
+       'MonthlyCharges_quantile_trim_trim',
+       'TotalCharges_interpolate_quantile_trim_trim'],
+      dtype='str')
+2026-04-07 23:19:08,810 - INFO - After Test Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile', 'tenure_yeo_trim',
+       'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim', 'tenure_yeo_trim_trim',
+       'MonthlyCharges_quantile_trim_trim',
+       'TotalCharges_interpolate_quantile_trim_trim'],
+      dtype='str')

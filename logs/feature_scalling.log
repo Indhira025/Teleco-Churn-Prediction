@@ -1,0 +1,23 @@
+2026-05-24 10:00:45,878 - INFO - training data independent size: (8236, 29)
+2026-05-24 10:00:45,878 - INFO - training data dependent size: (8236,)
+2026-05-24 10:00:45,878 - INFO - testing data independent size: (1409, 29)
+2026-05-24 10:00:45,878 - INFO - testing data dependent size: (1409,)
+2026-05-24 10:00:45,919 - INFO - before :    tenure_yeo_trim  MonthlyCharges_quantile_trim  TotalCharges_interpolate_quantile_trim  ...  Teleco_Partner_Reliance Jio  Teleco_Partner_Vodafone  Contract_Encoded
+0        11.806865                     -0.231641                                0.650863  ...                          0.0                      0.0               0.0
+
+[1 rows x 29 columns]
+2026-05-24 10:00:57,439 - INFO - ================ Model saved successfully =====================
+2026-05-24 10:00:57,450 - INFO - Accuracy: 0.7409510290986515
+2026-05-24 10:00:57,452 - INFO - Confusion Matrix:
+[[752 304]
+ [ 61 292]]
+2026-05-24 10:00:57,467 - INFO - Report:
+              precision    recall  f1-score   support
+
+           0       0.92      0.71      0.80      1056
+           1       0.49      0.83      0.62       353
+
+    accuracy                           0.74      1409
+   macro avg       0.71      0.77      0.71      1409
+weighted avg       0.82      0.74      0.76      1409
+

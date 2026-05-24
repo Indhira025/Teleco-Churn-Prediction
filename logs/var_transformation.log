@@ -1,0 +1,26 @@
+2026-05-24 10:00:27,277 - INFO - ====================== variable transformation =================================
+2026-05-24 10:00:27,278 - INFO - Before Train Column Name : Index(['SeniorCitizen', 'tenure', 'MonthlyCharges',
+       'TotalCharges_interpolate'],
+      dtype='str')
+2026-05-24 10:00:27,278 - INFO - Before Test Column Name : Index(['SeniorCitizen', 'tenure', 'MonthlyCharges',
+       'TotalCharges_interpolate'],
+      dtype='str')
+2026-05-24 10:00:37,136 - INFO - After Train Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile'],
+      dtype='str')
+2026-05-24 10:00:37,136 - INFO - After Test Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile'],
+      dtype='str')
+2026-05-24 10:00:37,137 - INFO - ================== Handling Outlier =========================
+2026-05-24 10:00:37,137 - INFO - Before Train Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile'],
+      dtype='str')
+2026-05-24 10:00:37,138 - INFO - Before Test Column Name : Index(['SeniorCitizen', 'tenure_yeo', 'MonthlyCharges_quantile',
+       'TotalCharges_interpolate_quantile'],
+      dtype='str')
+2026-05-24 10:00:43,621 - INFO - After Train Column Name : Index(['tenure_yeo_trim', 'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim', 'SeniorCitizen'],
+      dtype='str')
+2026-05-24 10:00:43,622 - INFO - After Test Column Name : Index(['tenure_yeo_trim', 'MonthlyCharges_quantile_trim',
+       'TotalCharges_interpolate_quantile_trim', 'SeniorCitizen'],
+      dtype='str')
